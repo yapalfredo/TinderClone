@@ -18,12 +18,14 @@
         app:srcCompat="@drawable/tinder_clone_logo" />
 
     <Button
+        style="@style/standardButton"
         android:layout_width="@dimen/standard_width"
         android:layout_height="@dimen/standard_height"
         android:onClick="onLogin"
         android:text="@string/start_up_button_login" />
 
     <Button
+        style="@style/standardButton"
         android:layout_width="@dimen/standard_width"
         android:layout_height="@dimen/standard_height"
         android:onClick="onSignup"
