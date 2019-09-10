@@ -6,20 +6,56 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.tinderclone.R
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_signup.*
+import android.widget.Toast
 
 class SignupActivity : AppCompatActivity() {
+
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
+        val user = firebaseAuth.currentUser
+        if (user != null) {
+            startActivity(MainActivity.newIntent(this))
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
     }
 
-    fun onSignup(v: View){
-        startActivity(MainActivity.newIntent(this))
+    override fun onStart() {
+        super.onStart()
+        firebaseAuth.addAuthStateListener(firebaseAuthListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        firebaseAuth.removeAuthStateListener(firebaseAuthListener)
+    }
+
+    fun onSignup(v: View) {
+        if (!emailET.text.toString().isNullOrEmpty() && !passwordET.text.toString().isNullOrEmpty()) {
+            firebaseAuth.createUserWithEmailAndPassword(
+                emailET.text.toString(),
+                passwordET.text.toString()
+            )
+                .addOnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Toast.makeText(
+                            this,
+                            "Signup Error! ${task.exception?.localizedMessage}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        }
     }
 
     //Static function in Kotlin
-    companion object{
+    companion object {
         fun newIntent(context: Context?) = Intent(context, SignupActivity::class.java)
     }
 }
