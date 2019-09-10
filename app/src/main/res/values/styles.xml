@@ -18,4 +18,11 @@
         <item name="android:background">@drawable/standard_button_rounded</item>
     </style>
 
+
+<!--    removing default action bar-->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

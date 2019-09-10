@@ -1,4 +1,4 @@
-package com.example.tinderclone.Util
+package com.example.tinderclone.util
 
 data class User(
     val uid: String? = "",
