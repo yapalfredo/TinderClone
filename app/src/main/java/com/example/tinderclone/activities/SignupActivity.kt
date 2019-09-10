@@ -9,9 +9,13 @@ import com.example.tinderclone.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signup.*
 import android.widget.Toast
+import com.example.tinderclone.Util.DATA_USERS
+import com.example.tinderclone.Util.User
+import com.google.firebase.database.FirebaseDatabase
 
 class SignupActivity : AppCompatActivity() {
 
+    private val firebaseDatabase = FirebaseDatabase.getInstance().reference
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
         val user = firebaseAuth.currentUser
@@ -49,6 +53,11 @@ class SignupActivity : AppCompatActivity() {
                             "Signup Error! ${task.exception?.localizedMessage}",
                             Toast.LENGTH_SHORT
                         ).show()
+                    } else {
+                        val email = emailET.text.toString()
+                        val userId = firebaseAuth.currentUser?.uid ?: ""
+                        val user = User(userId, "", "", email, "", "", "")
+                        firebaseDatabase.child(DATA_USERS).child(userId).setValue(user)
                     }
                 }
         }
