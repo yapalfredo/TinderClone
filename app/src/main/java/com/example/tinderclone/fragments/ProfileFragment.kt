@@ -7,8 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.tinderclone.R
+import com.example.tinderclone.activities.TinderCallback
+import com.google.firebase.database.DatabaseReference
 
 class ProfileFragment : Fragment() {
+
+    //promise that this  particular variable will be instantiated before we ever use it
+    //null at the moment but will be instantiated later
+    private lateinit var userId: String
+    private lateinit var userDatabase: DatabaseReference
+
+    private var callback: TinderCallback? = null
+
+    fun setCallback(callback: TinderCallback) {
+        this.callback = callback
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
