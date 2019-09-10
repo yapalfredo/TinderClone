@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class TinderActivity : AppCompatActivity(), TinderCallback {
 
-    private val firebaseAuth =  FirebaseAuth.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val userId = firebaseAuth.currentUser?.uid
     private lateinit var userDatabase: DatabaseReference
 
@@ -37,12 +37,11 @@ class TinderActivity : AppCompatActivity(), TinderCallback {
     private var swipeTab: TabLayout.Tab? = null
     private var matchesTab: TabLayout.Tab? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (userId.isNullOrEmpty()){
+        if (userId.isNullOrEmpty()) {
             onSignout()
         }
 
@@ -113,9 +112,13 @@ class TinderActivity : AppCompatActivity(), TinderCallback {
         finish()
     }
 
-    override fun getUserId() : String = userId!!
+    override fun onGetUserId(): String = userId!!
 
     override fun getDatabase(): DatabaseReference = userDatabase!!
+
+    override fun profileComplete() {
+        swipeTab?.select()
+    }
 
 
     fun replaceFragment(fragment: Fragment) {
