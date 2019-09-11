@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.tinderclone.R
 import com.example.tinderclone.activities.TinderCallback
 import com.example.tinderclone.util.*
@@ -50,6 +51,7 @@ class ProfileFragment : Fragment() {
         applyButton.setOnClickListener { onApply() }
         signoutButton.setOnClickListener { callback?.onSignout() }
 
+        photoIV.setOnClickListener { callback?.startActivityForPhoto() }
 
     }
 
@@ -76,6 +78,9 @@ class ProfileFragment : Fragment() {
                     }
                     if (user?.preferredGender == GENDER_FEMALE) {
                         radioWoman2.isChecked = true
+                    }
+                    if (!user?.imageUrl.isNullOrEmpty()){
+                        populateImage(user?.imageUrl!!)
                     }
                     progressLayout.visibility = View.GONE
                 }
@@ -112,6 +117,17 @@ class ProfileFragment : Fragment() {
 
         }
 
+    }
+
+    fun updateImageUri(uri : String){
+        userDatabase.child(DATA_IMAGE_URL).setValue(uri)
+        populateImage(uri)
+    }
+
+    fun populateImage(uri : String){
+        Glide.with(this)
+            .load(uri)
+            .into(photoIV)
     }
 
 }

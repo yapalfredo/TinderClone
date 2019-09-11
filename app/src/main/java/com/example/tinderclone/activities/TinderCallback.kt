@@ -8,5 +8,6 @@ interface TinderCallback {
     fun onGetUserId() : String
     fun getDatabase() : DatabaseReference
     fun profileComplete()
+    fun startActivityForPhoto()
 
 }
