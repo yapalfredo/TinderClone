@@ -16,35 +16,35 @@
         android:layout_height="@dimen/card_dimension"
         android:layout_gravity="center"
         android:background="@color/grey"
-        android:elevation="5dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp">
 
         <ImageView
-            android:id="@+id/photoImageView"
+            android:id="@+id/photoIV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"/>
 
         <LinearLayout
-            android:id="@+id/profileClickLayout"
+            android:id="@+id/userInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cards_name_height"
-            android:layout_gravity="bottom"
-            android:background="#00FFFFFF"
+            android:background="#aaaaaaaa"
+            android:paddingLeft="8dp"
             android:gravity="bottom"
-            android:paddingLeft="8dp">
+            android:layout_gravity="bottom">
 
             <TextView
                 android:id="@+id/nameTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom|left"
-                android:textColor="@color/white"
                 android:textSize="27sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:text="Hello "/>
-
+                android:gravity="bottom|left"
+                android:text="Hello"/>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 

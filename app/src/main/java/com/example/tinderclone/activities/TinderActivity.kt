@@ -18,6 +18,7 @@ import com.example.tinderclone.R
 import com.example.tinderclone.fragments.MatchesFragment
 import com.example.tinderclone.fragments.ProfileFragment
 import com.example.tinderclone.fragments.SwipeFragment
+import com.example.tinderclone.util.DATA_CHATS
 import com.example.tinderclone.util.DATA_USERS
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -32,10 +33,10 @@ import java.io.IOException
 const val REQUEST_CODE_PHOTO = 1234
 
 class TinderActivity : AppCompatActivity(), TinderCallback {
-
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val userId = firebaseAuth.currentUser?.uid
     private lateinit var userDatabase: DatabaseReference
+    private lateinit var chatDatabase: DatabaseReference
 
     private var profileFragment: ProfileFragment? = null
     private var swipeFragment: SwipeFragment? = null
@@ -56,6 +57,7 @@ class TinderActivity : AppCompatActivity(), TinderCallback {
         }
 
         userDatabase = FirebaseDatabase.getInstance().reference.child(DATA_USERS)
+        chatDatabase = FirebaseDatabase.getInstance().reference.child(DATA_CHATS)
 
 
         //Creating the navigation tabs
@@ -124,11 +126,14 @@ class TinderActivity : AppCompatActivity(), TinderCallback {
 
     override fun onGetUserId(): String = userId!!
 
-    override fun getDatabase(): DatabaseReference = userDatabase!!
+    override fun getUserDatabase(): DatabaseReference = userDatabase!!
 
     override fun profileComplete() {
         swipeTab?.select()
     }
+
+    override fun getChatDatabase(): DatabaseReference = chatDatabase
+
 
     override fun startActivityForPhoto() {
         val intent = Intent(Intent.ACTION_PICK)

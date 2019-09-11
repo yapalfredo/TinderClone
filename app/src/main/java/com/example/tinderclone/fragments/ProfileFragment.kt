@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
     fun setCallback(callback: TinderCallback) {
         this.callback = callback
         userId = callback.onGetUserId()
-        userDatabase = callback.getDatabase().child(userId)
+        userDatabase = callback.getUserDatabase().child(userId)
     }
 
     override fun onCreateView(

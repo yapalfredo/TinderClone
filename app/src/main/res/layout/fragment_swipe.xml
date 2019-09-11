@@ -58,7 +58,7 @@
             android:src="@drawable/dislike" />
 
         <ImageButton
-            android:id="@+id/lieButton"
+            android:id="@+id/likeButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/like_dislike_button_height"
             android:layout_gravity="center_vertical"
