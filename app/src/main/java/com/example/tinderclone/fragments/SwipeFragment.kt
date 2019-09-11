@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 
 import com.example.tinderclone.R
 import com.example.tinderclone.activities.TinderCallback
@@ -93,7 +94,7 @@ class SwipeFragment : Fragment() {
 
                             override fun onDataChange(p0: DataSnapshot) {
                                 if (p0.hasChild(selectedUserId)) {
-//                                    Toast.makeText(context, "Match!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Match!", Toast.LENGTH_SHORT).show()
 
                                     val chatKey = chatDatabase.push().key
 
@@ -141,13 +142,13 @@ class SwipeFragment : Fragment() {
         frame.setOnItemClickListener { position, data -> }
 
         likeButton.setOnClickListener {
-            if (!rowItems.isEmpty()) {
+            if (rowItems.isNotEmpty()) {
                 frame.topCardListener.selectRight()
             }
         }
 
         dislikeButton.setOnClickListener {
-            if (!rowItems.isEmpty()) {
+            if (rowItems.isNotEmpty()) {
                 frame.topCardListener.selectLeft()
             }
         }
