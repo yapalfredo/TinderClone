@@ -10,3 +10,10 @@ data class User(
     val imageUrl: String? = ""
 )
 
+data class Chat(
+    val userId: String? = "",
+    var chatId: String? = "",
+    val otherUserId: String? = "",
+    val name: String?= "",
+    val imageUrl: String? = ""
+)
