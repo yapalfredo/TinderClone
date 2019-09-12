@@ -10,19 +10,17 @@ import com.bumptech.glide.Glide
 import com.example.tinderclone.R
 import com.example.tinderclone.util.Chat
 
-class ChatsAdapter(private var chats: ArrayList<Chat>) :
-    RecyclerView.Adapter<ChatsAdapter.ChatsViewHolder>() {
+class ChatsAdapter(private var chats: ArrayList<Chat>) : RecyclerView.Adapter<ChatsAdapter.ChatsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsViewHolder =
-        ChatsViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_chat,
-                parent,
-                false
-            )
-        )
+    fun addElement(chat: Chat) {
+        chats.add(chat)
+        notifyDataSetChanged()
+    }
 
-    override fun getItemCount(): Int = chats.size
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int) =
+        ChatsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false))
+
+    override fun getItemCount() = chats.size
 
     override fun onBindViewHolder(holder: ChatsViewHolder, position: Int) {
         holder.bind(chats[position])
@@ -35,14 +33,18 @@ class ChatsAdapter(private var chats: ArrayList<Chat>) :
         private var name = view.findViewById<TextView>(R.id.chatNameTV)
 
         fun bind(chat: Chat) {
-            name.text = chat.name.toString()
-            if (image != null) {
+            name.text = chat.name
+            if(image != null) {
                 Glide.with(view)
                     .load(chat.imageUrl)
                     .into(image)
             }
-            layout.setOnClickListener {  }
-        }
-    }
 
+            layout.setOnClickListener {
+            //    val intent = ChatActivity.newIntent(view.context, chat.chatId, chat.userId, chat.imageUrl, chat.otherUserId)
+              //  view.context.startActivity(intent)
+            }
+        }
+
+    }
 }
