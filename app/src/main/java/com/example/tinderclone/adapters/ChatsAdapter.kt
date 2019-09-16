@@ -45,6 +45,5 @@ class ChatsAdapter(private var chats: ArrayList<Chat>) : RecyclerView.Adapter<Ch
               //  view.context.startActivity(intent)
             }
         }
-
     }
 }
