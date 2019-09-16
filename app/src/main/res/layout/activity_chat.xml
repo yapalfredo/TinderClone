@@ -22,24 +22,51 @@
             android:layout_width="@dimen/navigation_height"
             android:layout_height="@dimen/navigation_height"
             android:layout_marginRight="@dimen/chat_margin"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside" />
 
         <TextView
             android:id="@+id/topNameTV"
             android:layout_width="match_parent"
             android:layout_height="@dimen/navigation_height"
             android:gravity="center_vertical"
-            android:textSize="28sp"
-            android:paddingLeft="@dimen/chat_margin"/>
+            android:paddingLeft="@dimen/chat_margin"
+            android:textSize="28sp" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/messageET"
+        app:layout_constraintTop_toBottomOf="@+id/navigationLayout">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/sendButton"
+        style="@style/SendButton"
         android:layout_width="@dimen/send_width"
         android:layout_height="@dimen/send_height"
-        android:text="@string/send_button_text"
         android:layout_margin="@dimen/chat_margin"
-        android:onClick="onSend"/>
+        android:onClick="onSend"
+        android:text="@string/send_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/navigationLayout" />
 
+    <EditText
+        android:id="@+id/messageET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/chat_margin"
+        android:background="@drawable/chat_box_bg_rounded"
+        android:gravity="center_vertical"
+        android:hint="@string/hint_message"
+        android:maxHeight="@dimen/send_height_max"
+        android:minHeight="@dimen/send_height"
+        android:padding="@dimen/chat_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sendButton"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

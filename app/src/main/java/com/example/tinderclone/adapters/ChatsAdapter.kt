@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tinderclone.R
+import com.example.tinderclone.activities.ChatActivity
 import com.example.tinderclone.util.Chat
 
 class ChatsAdapter(private var chats: ArrayList<Chat>) : RecyclerView.Adapter<ChatsAdapter.ChatsViewHolder>() {
@@ -41,8 +42,8 @@ class ChatsAdapter(private var chats: ArrayList<Chat>) : RecyclerView.Adapter<Ch
             }
 
             layout.setOnClickListener {
-            //    val intent = ChatActivity.newIntent(view.context, chat.chatId, chat.userId, chat.imageUrl, chat.otherUserId)
-              //  view.context.startActivity(intent)
+                val intent = ChatActivity.newIntent(view.context, chat.chatId, chat.userId, chat.imageUrl, chat.otherUserId)
+                view.context.startActivity(intent)
             }
         }
     }
